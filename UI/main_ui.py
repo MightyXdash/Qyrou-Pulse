@@ -20,7 +20,11 @@ class MainWindow(QMainWindow):
      def init_ui(self):
           central_widget = QWidget()
           self.setCentralWidget(central_widget)
-          
+          self.setStyleSheet("""
+               QMainWindow {
+                    background-color: #ffffff;
+               }
+          """)
           self.main_layout = QVBoxLayout()
           self.main_layout.setContentsMargins(15,0,15,15)
           self.main_layout.addStretch(1)
@@ -32,8 +36,14 @@ class MainWindow(QMainWindow):
                border: 1px solid #ccc;
                border-radius: 10px;
                padding: 10px;
-               """)    
-         
+               color: black; 
+               font: 14px 'Arial'; 
+          """)
+
+
+          placeholder_palette = self.prompt_box.palette()
+          placeholder_palette.setColor(QPalette.PlaceholderText, QColor("black"))
+          self.prompt_box.setPalette(placeholder_palette)
 
           self.main_layout.addWidget(self.prompt_box)
           central_widget.setLayout(self.main_layout)
